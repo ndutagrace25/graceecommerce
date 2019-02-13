@@ -2,14 +2,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-   <?php $this->load->view("site/templates/layouts/includes/header");?>
+   <?php $this->load->view("site/layouts/includes/header");?>
   </head>
   <body>
-    <?php $this->load->view("site/templates/layouts/includes/navigation"); ?>
+    <?php $this->load->view("site/layouts/includes/navigation"); ?>
 
 <div class="container-fluid">
   <div class="row">
-  <?php $this->load->view("site/templates/layouts/includes/sidebar");?>
+  <?php $this->load->view("site/layouts/includes/sidebar");?>
   
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 pt-5">
       <h1>Welcome to Friends Zone!!</h1>

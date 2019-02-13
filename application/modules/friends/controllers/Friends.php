@@ -18,7 +18,7 @@ Class Friends extends MX_Controller {
             "content" =>$this->load->view("friends/all_friends",$v_data, TRUE)
         
         );
-            $this->load->view("site/templates/layouts/layout",$data);
+            $this->load->view("site/layouts/layout",$data);
             
     
            // $data=array
@@ -180,12 +180,12 @@ public function new_friend(){
     $v_data["friend_id"] = $friend_id;
     $v_data["friend_gender"] = $gender;
     $v_data["friend_hobby"] = $hobby;
-    $data = array("title" => $this->sites_model->display_page_title(),
+    $data = array("title" => $this->site_model->display_page_title(),
     "content" => $this->load->view("friends/edit_friend", $v_data, true));
     // $data = array(
     // // "all_friends"=>$this->friend_model->get_friends()
     // );
-    $this->load->view("sites/templates/layout/layout", $data);
+    $this->load->view("site/templates/layouts/layout", $data);
      
     } else {
     $this->session->set_flashdata("error_message", "couldnt");

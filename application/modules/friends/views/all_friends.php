@@ -62,7 +62,7 @@
                         <?php echo $gender;?>
                  </td>
                  <td>
-                      <?php echo anchor("friends/welcome/".$id,"view");?>
+                      <?php echo anchor("friends/welcome/".$id,"view","class ='btn btn-info'");?>
                  </td>
                  <td>
                  

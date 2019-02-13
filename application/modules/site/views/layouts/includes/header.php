@@ -7,7 +7,11 @@
 
     <!-- Bootstrap core CSS -->
 <link href="<?php echo base_url();?>assets/vendor/bootstrap/css/bootstrap.min.css "rel="stylesheet">
-<link href="<?php echo base_url();?>assets/themes/custom/style.css" rel="stlesheet">
 
+<?php if (isset($login)){?>
+<link href="<?php echo base_url();?>assets/themes/custom/login.css" rel="stylesheet">
+<?php } else {?>
+<link href="<?php echo base_url();?>assets/themes/custom/style.css" rel="stylesheet">
 
+<?php }?>
     

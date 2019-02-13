@@ -17,7 +17,7 @@ Class Groups extends MX_Controller {
             "content" =>$this->load->view("friends/all_groups",$v_data, TRUE)
     
         );
-            $this->load->view("site/templates/layouts/layout",$data);
+            $this->load->view("site/layouts/layout",$data);
             
     
            // $data=array
