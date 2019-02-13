@@ -54,17 +54,40 @@
      //end of pagination
 
      //edit button
-     public function edit_friend($friend_id)
-     {
-        $update = array(
-            "friend_name" => $this->input->post("firstname"),
-             "friend_age" => $this->input->post("age"),
-             "friend_gender" => $this->input->post("gender"),
-             "friend_hobby" => $this->input->post("hobby"),
-            );
-        $this->db->where('friend_id',$friend_id);
-        return $this->db->update('friend', $update);
-     }
+    //  public function edit_friend($friend_id)
+    //  {
+    //     $update = array(
+    //         "friend_name" => $this->input->post("firstname"),
+    //          "friend_age" => $this->input->post("age"),
+    //          "friend_gender" => $this->input->post("gender"),
+    //          "friend_hobby" => $this->input->post("hobby"),
+    //         );
+    //     $this->db->where('friend_id',$friend_id);
+    //     return $this->db->update('friend', $update);
+    //  }
+
+    public function update_friend( $friend_id)
+{
+$data = array (
+//how its in db..............how its in form
+"friend_name"=>$this->input->post("Name"),
+"friend_age"=>$this->input->post("age"),
+"friend_gender"=>$this->input->post("gender"),
+"friend_hobby"=>$this->input->post("hobby")
+);
+ 
+$this->db->set($data);
+$this->db->where('friend_id', $friend_id);
+if ($this->db->update('friend')) {
+# code...
+return TRUE;
+}else {
+# code...
+return FALSE;
+}
+ 
+//var_dump($data);die();
+}
      //end of edit button
      
  }

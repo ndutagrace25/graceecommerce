@@ -124,27 +124,76 @@ public function new_friend(){
     // end of pagination
 
     // edit button
-    public function edited_friend ()
-    {
-        $this->form_validation->set_rules ("firstname","First Name","trim|required");
-        $this->form_validation->set_rules ("age","Age","trim|required|numeric");
-        $this->form_validation->set_rules ("gender","Gender","trim|required");
-        $this->form_validation->set_rules ("hobby","Hobby","trim|required");
+    // public function edited_friend ()
+    // {
+    //     $this->form_validation->set_rules ("firstname","First Name","trim|required");
+    //     $this->form_validation->set_rules ("age","Age","trim|required|numeric");
+    //     $this->form_validation->set_rules ("gender","Gender","trim|required");
+    //     $this->form_validation->set_rules ("hobby","Hobby","trim|required");
 
-        if ($this->form_validation->run() == FALSE)
-        {
-            echo "failed to edit friend";
-        }
-        else
-        {
-            $friend_id = $this->input->post("friend_id");
-            $this->friends_model->edit_friend($friend_id);
-            $this->session->set_flashdata("success_message","Friend ID ".$friend_id." has been edited");
-        }
+    //     if ($this->form_validation->run() == FALSE)
+    //     {
+    //         echo "failed to edit friend";
+    //     }
+    //     else
+    //     {
+    //         $friend_id = $this->input->post("friend_id");
+    //         $this->friends_model->edit_friend($friend_id);
+    //         $this->session->set_flashdata("success_message","Friend ID ".$friend_id." has been edited");
+    //     }
 
         
     
+    // }
+    public function edited_friend($friend_id)
+    {
+    ///server side validation
+    $this->form_validation->set_rules("Name","Name", "required");
+    $this->form_validation->set_rules("age","Age", "required|numeric");
+    $this->form_validation->set_rules("gender","Gender", "required");
+    $this->form_validation->set_rules("hobby","Hobby", "required");
+    $validation_errors = "";
+    // $friend, $age, $gender, $hobby;
+     
+    if($this->form_validation->run())
+    {
+    $update_status = $this->friends_model->update_friend($friend_id);
+    if ($update_status) {
+    # code...
+    redirect("friends");
     }
+    }
+    else
+    {
+    //name from form is the unique identifier
+    $my_friend = $this->friends_model->get_single_friend($friend_id);
+    // var_dump($my_friend); die();
+    if ($my_friend->num_rows() > 0) {
+    $row = $my_friend->row();
+    $friend = $row->friend_name;
+    $age = $row->friend_age;
+    $gender = $row->friend_gender;
+    $hobby = $row->friend_hobby;
+     
+    $v_data["friend_name"] = $friend;
+    $v_data["friend_age"] = $age;
+    $v_data["friend_id"] = $friend_id;
+    $v_data["friend_gender"] = $gender;
+    $v_data["friend_hobby"] = $hobby;
+    $data = array("title" => $this->sites_model->display_page_title(),
+    "content" => $this->load->view("friends/edit_friend", $v_data, true));
+    // $data = array(
+    // // "all_friends"=>$this->friend_model->get_friends()
+    // );
+    $this->load->view("sites/templates/layout/layout", $data);
+     
+    } else {
+    $this->session->set_flashdata("error_message", "couldnt");
+    redirect("friends");
+    }
+    }
+    }
+
     // end of edit button
     
 }

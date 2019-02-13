@@ -65,7 +65,8 @@
                       <?php echo anchor("friends/welcome/".$id,"view");?>
                  </td>
                  <td>
-                 <?php echo anchor("friends/edited_friend","Edit Friend");?>
+                 
+                    <?php echo anchor("friends/friends/edited_friend/".$id, "Edit","class ='btn btn-info'");?>
                  </td>
                 </tr>
                 
